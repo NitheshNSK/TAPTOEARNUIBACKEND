@@ -1,0 +1,34 @@
+const crypto = require("crypto");
+const ENCRYPTION_KEY =
+  process.env.ENCRYPTION_KEY || "12345678901234567890123456789012"; // 32 bytes
+const IV_LENGTH = 16;
+
+function encrypt(text) {
+  let iv = crypto.randomBytes(IV_LENGTH);
+  let cipher = crypto.createCipheriv(
+    "aes-256-cbc",
+    Buffer.from(ENCRYPTION_KEY),
+    iv
+  );
+  let encrypted = cipher.update(text);
+
+  encrypted = Buffer.concat([encrypted, cipher.final()]);
+  return iv.toString("hex") + ":" + encrypted.toString("hex");
+}
+
+function decrypt(text) {
+  let [ivText, encryptedText] = text.split(":");
+  let iv = Buffer.from(ivText, "hex");
+  let encrypted = Buffer.from(encryptedText, "hex");
+  let decipher = crypto.createDecipheriv(
+    "aes-256-cbc",
+    Buffer.from(ENCRYPTION_KEY),
+    iv
+  );
+  let decrypted = decipher.update(encrypted);
+
+  decrypted = Buffer.concat([decrypted, decipher.final()]);
+  return decrypted.toString();
+}
+
+module.exports = { encrypt, decrypt };
