@@ -2,7 +2,8 @@ const Settings = require("../models/Settings");
 const WithdrawalHistory = require("../models/WithdrawalHistory");
 const { getAdminBalances } = require("../utils/balanceUtils");
 const { sendTokenToUser } = require("../utils/transferUtils");
-
+const dotenv = require("dotenv");
+dotenv.config();
 exports.approveWithdrawal = async (req, res) => {
   try {
     const { id } = req.params;

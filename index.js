@@ -3,14 +3,14 @@ const http = require("http");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
-
+dotenv.config();
 const authRoutes = require("./routes/auth");
 const walletRoutes = require("./routes/wallet");
 const settingsRoutes = require("./routes/settings");
 const rewardRoutes = require("./routes/rewards");
 const { initSocket } = require("./sockets/socketHandler");
 const adminRoutes = require("./routes/admin");
-dotenv.config();
+
 
 const app = express();
 const server = http.createServer(app);

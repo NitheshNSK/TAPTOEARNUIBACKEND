@@ -1,4 +1,6 @@
 const crypto = require("crypto");
+const dotenv = require("dotenv");
+dotenv.config();
 const ENCRYPTION_KEY =
   process.env.ENCRYPTION_KEY || "12345678901234567890123456789012"; // 32 bytes
 const IV_LENGTH = 16;

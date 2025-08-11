@@ -2,7 +2,8 @@ const User = require("../models/User");
 const WithdrawalHistory = require("../models/WithdrawalHistory");
 const { calculateWithdrawalFees } = require("../utils/withdrawUtils");
 const { getSettings } = require("../services/settingsService");
-
+const dotenv = require("dotenv");
+dotenv.config();
 const jwt = require("jsonwebtoken");
 const { decrypt } = require("../utils/crypto");
 exports.getWithdrawStatus = async (req, res) => {

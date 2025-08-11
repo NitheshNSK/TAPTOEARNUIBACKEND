@@ -5,7 +5,8 @@ const User = require("../models/User");
 const { getLevelDataFromDB } = require("../utils/levelUtils");
 const { handleReferralProgress } = require("../services/referralService");
 const { getSettings } = require("../services/settingsService");
-
+const dotenv = require("dotenv");
+dotenv.config();
 let io;
 
 function initSocket(server) {
